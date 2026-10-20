@@ -1,0 +1,23 @@
+/* ----- * Add below code in base.css   * ------- */
+
+  /* code starts*/
+    /* to fix header menus when logo is on top center  */
+
+    .header-wrapper .header--top-center .mega-menu__list{
+      flex-wrap: nowrap !important;
+    }
+
+
+    /* fix search icon on other pages than homepage  */
+    @media screen and (min-width: 990px) {
+          .header:not(.header--top-center)>.header__search, .header--top-center *>.header__search {
+            display: inline-flex !important;
+          }
+          header > .header__search {
+                display: none !important;
+            }
+      }
+
+
+  /* code ends*/
+

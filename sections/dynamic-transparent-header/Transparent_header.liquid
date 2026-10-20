@@ -1,0 +1,131 @@
+ {% comment %} to use make header transparent based on scroll, 
+             add below code inside body tag of theme.liquid
+  
+ 
+ {% endcomment %}
+ 
+
+      <style>
+      
+        
+         .header-wrapper{
+          position: absolute !important;
+          width: 100% !important;
+          background: transparent !important;
+        }
+        
+          header, header *:not(.wishlist-h-count):not(.cart-count-bubble):not(.cart-count-bubble *)
+        {
+           color: black !important;
+           background: transparent !important;
+        } 
+        header .icon-search
+        {
+          stroke: black !important;
+        }
+        
+        
+      
+        /* Common Transition Effect */
+        .header-wrapper, 
+        .header-wrapper header, 
+        .header-wrapper *:not(.cart-count-bubble *), 
+        .header-wrapper .icon-search, 
+        header .icon-search, 
+        .scrolled-past-header .icon-search, 
+        header *:not(.cart-count-bubble *), 
+        .scrolled-past-header *, 
+        .scrolled-past-header header *:not(.wishlist-h-count):not(.cart-count-bubble) {
+            transition: color 0.1s ;
+            transition: background 175ms ease-in;
+        }
+        
+
+        /* to change color on hover and scroll  */
+
+
+        .header-wrapper:hover .icon-search, header:hover .icon-search, .scrolled-past-header .icon-search{
+          stroke: unset !important;       
+        } 
+
+      
+        .header-wrapper:hover, .header-wrapper:hover header, .header-wrapper:hover header *:not(.cart-count-bubble *),
+         header:hover , header:hover *:not(.cart-count-bubble *),
+        .scrolled-past-header *, .scrolled-past-header header *:not(.wishlist-h-count):not(.cart-count-bubble) {
+          color: white !important;
+          background: black !important;  
+    }
+
+        /* fix search icon on homepage  */
+      @media screen and (min-width: 990px) {
+      .header:not(.header--top-center)>.header__search, .header--top-center *>.header__search {
+         display: inline-flex !important;
+      }
+       header > .header__search {
+            display: none !important;
+        }
+
+  }
+
+            
+        </style>
+
+      <script>
+
+       
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const hoverSrc = 'https://cdn.shopify.com/s/files/1/0762/0087/0182/files/black-maxzone-logo.png?v=1741868225';
+    const hoverSrcset = ''; // Optional: add responsive srcset if needed
+
+    // Wait until logos are in the DOM
+    const waitForLogos = setInterval(() => {
+      const logoWrappers = document.querySelectorAll('.header__heading-logo-wrapper');
+      if (!logoWrappers.length) return;
+
+      clearInterval(waitForLogos);
+
+      const logoData = Array.from(logoWrappers).map(wrapper => {
+        const logo = wrapper.querySelector('.header__heading-logo');
+        if (!logo) return null;
+
+        return {
+          wrapper,
+          element: logo,
+          originalSrc: logo.src,
+          originalSrcset: logo.srcset
+        };
+      }).filter(Boolean);
+
+      // Function to check if background is transparent
+      function isTransparent(el) {
+        const bg = window.getComputedStyle(el).backgroundColor;
+        return bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent';
+      }
+
+      // Function to update all logos based on background
+      function updateLogos() {
+        logoData.forEach(({ wrapper, element, originalSrc, originalSrcset }) => {
+          if (isTransparent(wrapper)) {
+            // Transparent → show hover (black) logo
+            element.src = hoverSrc;
+            element.srcset = hoverSrcset || '';
+          } else {
+            // Not transparent → show original logo
+            element.src = originalSrc;
+            element.srcset = originalSrcset;
+          }
+        });
+      }
+
+      // Check every 100ms for responsive updates
+      setInterval(updateLogos, 10);
+    }, 10); // Wait until logos are present
+  });
+
+
+
+
+
+</script>
+
