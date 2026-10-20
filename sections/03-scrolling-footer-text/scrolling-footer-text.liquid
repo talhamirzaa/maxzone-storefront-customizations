@@ -1,0 +1,55 @@
+{% comment %}
+  To use this scrolling text feature:
+  1. Add the CSS inside the {%- style -%} tag of footer.liquid
+  2. Add the HTML part before the closing </div> of the footer element
+  3. Add the script right after the end of the footer element
+{% endcomment %}
+
+<style>
+@keyframes slideText {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+.scrolling-text-container {
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  padding: 16px 0;
+  white-space: nowrap;
+  font-size: 0; /* remove whitespace gaps */
+  position: relative;
+}
+
+.scrolling-text {
+  display: inline-block;
+  font-size: 12rem;
+  line-height: 1;
+  text-transform: uppercase;
+  animation: 40s slideText infinite linear;
+}
+
+@media (max-width: 768px) {
+  .scrolling-text {
+    font-size: 8rem;
+  }
+
+  .scrolling-text-container {
+    padding-bottom: 6rem;
+  }
+}
+</style>
+
+{% comment %} code for footer scrolling text effect {% endcomment %}
+<div class="scrolling-text-container">
+  <div class="scrolling-text">
+    &nbsp; Makes Life Easier &nbsp; Makes Life Easier &nbsp; Makes Life Easier &nbsp; Makes Life Easier &nbsp; Makes Life Easier
+  </div>
+</div>
+{% comment %} code for footer scrolling text effect ends {% endcomment %}
+
+<script>
+  const originalText = document.querySelector(".scrolling-text");
+  const clone = originalText.cloneNode(true);
+  document.querySelector(".scrolling-text-container").appendChild(clone);
+</script>
