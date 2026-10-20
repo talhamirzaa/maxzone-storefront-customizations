@@ -1,0 +1,37 @@
+/* Add this code in base.css */
+/* For desktop / large devices only */
+/* For this to work, on the product page, inside product information > media,
+   the desktop layout setting must be set to 'Thumbnail carousel' */
+
+@media only screen and (min-width: 986px) {
+  .product--small .thumbnail-list.slider--tablet-up li.thumbnail-list__item.slider__slide {
+    transform: rotate(-90deg);
+    width: calc(20% - .8rem);
+  }
+
+  .grid__item.product__media-wrapper slider-component.thumbnail-slider {
+    position: absolute;
+    top: 0;
+    transform: rotate(90deg);
+    left: 0;
+    transform-origin: left top;
+    overflow: hidden;
+    height: auto;
+    /* width is dynamically calculated via JS */
+  }
+
+  .grid__item.product__media-wrapper {
+    position: relative;
+    padding-left: 100px;
+  }
+
+  .thumbnail-list.slider--tablet-up li.thumbnail-list__item.slider__slide {
+    transform: rotate(-90deg);
+    width: calc(16.8% - .8rem); /* decrease percentage to increase items shown */
+  }
+
+  .product--thumbnail_slider .slider-mobile-gutter .slider-button {
+    width: 24px !important;
+    height: -webkit-fill-available !important;
+  }
+}
