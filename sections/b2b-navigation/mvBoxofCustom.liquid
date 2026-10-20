@@ -1,0 +1,60 @@
+{% comment %} new code for two column layout for space optimization {% endcomment %}
+
+{{ 'mvBoxofCustom.css' | asset_url | stylesheet_tag }}
+
+<div class="mvcontainer">
+
+  {% assign product_handle = product.handle %}
+
+  <div class="boxcmn">
+    <a href="/products/vibgyor-solid-t-shirt-pack-of-20">
+      <button class="{% if product_handle == 'vibgyor-solid-t-shirt-pack-of-20' %}active{% endif %}">
+        Pack of 20 T-Shirt
+      </button>
+    </a>
+  </div>
+
+  <div class="boxcmn">
+    <a href="/products/vibgyor-solid-t-shirt-pack-of-40">
+      <button class="{% if product_handle == 'vibgyor-solid-t-shirt-pack-of-40' %}active{% endif %}">
+        Pack of 40 T-Shirt
+      </button>
+    </a>
+  </div>
+
+  <div class="boxcmn">
+    <a href="/products/vibgyor-solid-t-shirt-pack-of-60">
+      <button class="{% if product_handle == 'vibgyor-solid-t-shirt-pack-of-60' %}active{% endif %}">
+        Pack of 60 T-Shirt
+      </button>
+    </a>
+  </div>
+
+  <div class="boxcmn">
+    <a href="/products/vibgyor-solid-t-shirt-pack-of-100">
+      <button class="{% if product_handle == 'vibgyor-solid-t-shirt-pack-of-100' %}active{% endif %}">
+        Pack of 100 T-Shirt
+      </button>
+    </a>
+  </div>
+
+  <div class="boxcmn">
+    <a href="/products/vibgyor-solid-t-shirt-pack-of-200">
+      <button class="{% if product_handle == 'vibgyor-solid-t-shirt-pack-of-200' %}active{% endif %}">
+        Pack of 200 T-Shirt
+      </button>
+    </a>
+  </div>
+
+  <div class="boxcmn">
+    <a href="/products/vibgyor-solid-t-shirt-pack-of-400">
+      <button class="{% if product_handle == 'vibgyor-solid-t-shirt-pack-of-400' %}active{% endif %}">
+        Pack of 400 T-Shirt
+      </button>
+    </a>
+  </div>
+
+</div>
+
+
+

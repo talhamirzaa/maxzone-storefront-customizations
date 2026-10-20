@@ -1,0 +1,95 @@
+{% comment %} to use this, add below code in custom liquid on cart page 
+
+add one featured collection section above this custom liquid code, 
+and use that section's id in below code
+
+{% endcomment %}
+ 
+
+{% if template == 'cart' %}
+{% assign hide_section = false %}
+
+{% for item in cart.items %}
+  {% if item.product.tags contains 'B2B' %}
+    {% assign hide_section = true %}
+  {% endif %}
+{% endfor %}
+
+{% if cart == empty or hide_section %}
+  <style>
+    {% comment %} section id {% endcomment %}
+    #shopify-section-template--23577249120550__featured_collection_8GEhi8 {
+      display: none;
+    }
+  </style>
+{% endif %}
+
+<script>
+(function () {
+  var sectionId = 'shopify-section-template--23577249120550__featured_collection_8GEhi8';
+  var isFetching = false; // Prevent multiple parallel calls
+
+  function updateFeaturedCollection() {
+    var featuredSection = document.getElementById(sectionId);
+    if (!featuredSection) return;
+
+    var cartItemsEl = document.querySelector('cart-items');
+
+    // 1️⃣ Hide if cart empty
+    if (cartItemsEl && cartItemsEl.classList.contains('is-empty')) {
+      featuredSection.style.display = 'none';
+      return;
+    } else {
+      featuredSection.style.display = '';
+    }
+
+    // Prevent duplicate fetch calls
+    if (isFetching) return;
+    isFetching = true;
+
+    fetch('/cart.js')
+      .then(function (res) { return res.json(); })
+      .then(function (cart) {
+
+        var cartHandles = cart.items.map(function (item) {
+          return item.handle;
+        });
+
+        var productItems = featuredSection.querySelectorAll('li.grid__item');
+
+        productItems.forEach(function (item) {
+          var link = item.querySelector('a[href*="/products/"]');
+          if (!link) return;
+
+          var handle = link
+            .getAttribute('href')
+            .split('/products/')[1]
+            .split('?')[0];
+
+          if (cartHandles.includes(handle)) {
+            item.style.display = 'none';
+          } else {
+            item.style.display = '';
+          }
+        });
+
+      })
+      .finally(function () {
+        isFetching = false;
+      });
+  }
+
+  // Initial run
+  document.addEventListener('DOMContentLoaded', function () {
+    updateFeaturedCollection();
+  });
+
+  // 🔥 Listen only to cart updates (Dawn compatible)
+  document.addEventListener('cart:updated', function () {
+    updateFeaturedCollection();
+  });
+
+})();
+</script>
+
+{% endif %}

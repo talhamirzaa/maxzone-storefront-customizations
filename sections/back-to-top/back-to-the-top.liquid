@@ -1,0 +1,78 @@
+{% comment %}
+  Reduce below value if you need the back to the top button to appear higher up on the page.
+  That value is in pixels.
+{% endcomment %}
+{% assign vertical_offset_for_trigger = 300 %}
+
+{% comment %}
+  Vertical offset from bottom of browser for the position of the button.
+{% endcomment %}
+{% assign position_from_bottom = '1em' %}
+
+<a id="BackToTop" href="#" title="Back to the top" class="back-to-top hide">
+  <i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
+
+  
+</a>
+{{ '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css' | stylesheet_tag }}
+<style>
+  .back-to-top {
+    position: fixed;
+    bottom: {{ position_from_bottom }};
+    left: 14px;
+    text-decoration: none;
+    color: #FFF;
+    {% comment %} background-color: #383838; {% endcomment %}
+     background-color: rgb(32, 42, 54);
+    font-size: 20px;
+    padding: 0.3em 0.6em;
+    /* border: 2px solid #383838; */
+    border-radius: 50%;
+    z-index: 60000;
+  }
+  .back-to-top i {
+    vertical-align: middle;
+  }
+  .back-to-top span {
+    padding-left: 0.5em;
+  }
+  .back-to-top i + span {
+    padding-left: 0;
+  }
+  .back-to-top:hover {
+    text-decoration: none;
+    color: #555;
+  }
+  .hide {
+    display: none!important;
+  }
+</style>
+
+<script>
+  (function () {
+    var goTopBtn = document.querySelector('.back-to-top');
+    var lastScrollTop = 0;
+    var triggerOffset = {{ vertical_offset_for_trigger }};
+
+    window.addEventListener('scroll', function () {
+      var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Show button only when scrolling up and beyond trigger offset
+      if (currentScrollTop < lastScrollTop && currentScrollTop > triggerOffset) {
+        goTopBtn.classList.remove('hide');
+      } else {
+        goTopBtn.classList.add('hide');
+      }
+
+      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
+    });
+
+    goTopBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  })();
+</script>
