@@ -1,0 +1,179 @@
+
+{% if section.blocks.size > 0 %}
+<div class="tabs-section page-width">
+  {% if section.settings.title != blank %}
+    <h3 class="featured-title tab-t">{{ section.settings.title }}</h3>
+  {% endif %}
+
+  <!-- Tab headers -->
+  <ul class="tabs-nav">
+    {% for block in section.blocks %}
+      {% assign collection = collections[block.settings.collection] %}
+      {% assign tab_title = block.settings.custom_tab_title | default: collection.title %}
+      <li>
+        <button data-tab="tabs-{{ block.id }}" class="{% if forloop.first %}active{% endif %} tab-btn">
+          {{ tab_title }}
+        </button>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Tab content -->
+  {% for block in section.blocks %}
+    {% assign collection = collections[block.settings.collection] %}
+    <div id="tabs-{{ block.id }}" class="tab-panel {% if forloop.first %}active{% endif %}">
+      <slider-component>
+        <ul class="grid product-grid grid--2-col-tablet-down grid--4-col-desktop">
+          {% for product in collection.products limit: 8 %}
+            <li class="grid__item">
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                show_quick_add: section.settings.enable_quick_add,
+                section_id: section.id
+              %}
+            </li>
+          {% endfor %}
+        </ul>
+      </slider-component>
+
+      {% if block.settings.viewall %}
+        <div class="center collection__view-all">
+          <a class="button" href="{{ collection.url }}">View all</a>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+<script defer>
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".tabs-nav button");
+  const panels = document.querySelectorAll(".tab-panel");
+
+  tabs.forEach(btn => {
+    btn.addEventListener("click", () => {
+      panels.forEach(p => p.classList.remove("active"));
+      tabs.forEach(t => t.classList.remove("active"));
+
+      btn.classList.add("active");
+      document.getElementById(btn.dataset.tab).classList.add("active");
+    });
+  });
+});
+</script>
+
+<style>
+  .tabs-section{
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+.tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  list-style: none;   /* remove bullets */
+  padding: 0;
+}
+.tabs-nav li { margin: 0; }
+.tabs-nav button {
+  padding: 6px 14px;
+  border: 1px solid black;
+  border-radius: 5px !important;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap; /* prevent wrapping */
+}
+.tabs-nav button.active {
+  background: black;
+  color: white;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.tab-t { 
+
+  text-align: center; 
+  margin: 10px 0;
+ }
+.collection__view-all a { color: white !important; }
+
+  .tab-btn{
+    color: black;
+  }
+
+@media (max-width: 800px) {
+  .tabs-nav {
+    overflow-x: auto;                 /* horizontal scroll */
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    scrollbar-width: none;            /* Firefox hide scrollbar */
+  }
+  .tabs-nav::-webkit-scrollbar { display: none; } /* WebKit hide scrollbar */
+}
+</style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Multi-Tabs",
+  "settings": [
+    { "type": "inline_richtext", "id": "title", "label": "Title" },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Heading 2" },
+        { "value": "h1", "label": "Heading 1" },
+        { "value": "h0", "label": "Heading 0" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "square",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "square", "label": "Square" },
+        { "value": "portrait", "label": "Portrait" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "label": "Image shape",
+      "default": "default",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "round", "label": "Round" }
+      ]
+    },
+    { "type": "checkbox", "id": "show_secondary_image", "label": "Show secondary image", "default": true },
+    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": false },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
+    { "type": "checkbox", "id": "enable_quick_add", "label": "Enable quick add", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "limit": 15,
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "custom_tab_title", "label": "Custom tab title (optional)" },
+        { "type": "checkbox", "id": "viewall", "label": "Show view all", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Multi-Tabs", "blocks": [] }
+  ]
+}
+{% endschema %}
