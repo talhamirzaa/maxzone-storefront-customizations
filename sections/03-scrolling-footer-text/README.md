@@ -20,5 +20,12 @@ JS snippet to seamlessly loop the text.
 ## Tech
 Shopify Liquid, CSS (keyframe animation), vanilla JavaScript
 
+## Setup
+Open the theme's `footer.liquid` and add the code from
+`scrolling-footer-text.liquid` in three parts:
+1. The CSS inside the existing `{%- style -%}` tag.
+2. The HTML block just before the footer element's closing `</div>`.
+3. The `<script>` block right after the footer element ends.
+
 ## Files
 - [`scrolling-footer-text.liquid`](./scrolling-footer-text.liquid) — the full code (style + markup + script)

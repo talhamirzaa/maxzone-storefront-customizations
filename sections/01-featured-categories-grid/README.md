@@ -1,6 +1,6 @@
 # Featured Categories Grid
 
-*Maxzone Clothing (Shopify) — custom section, built Oct 2026*
+*Maxzone Clothing — custom section, built November 2025*
 
 ![Featured categories grid output](./output-screenshot.png)
 
@@ -21,6 +21,12 @@ from the theme editor.
 
 ## Tech
 Shopify Liquid, theme editor schema, CSS Grid, vanilla JavaScript
+
+## Setup
+Add `featured-categories.liquid` to the theme's `sections/` folder. It
+then appears as "Featured categories" in the theme editor's section
+picker — add it to any template and configure blocks/settings from
+there. No other files need to be touched.
 
 ## Files
 - [`featured-categories.liquid`](./featured-categories.liquid) — full section code

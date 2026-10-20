@@ -1,6 +1,6 @@
 # Christmas/Winter Snowfall Effect
 
-*Maxzone Clothing (Shopify) — custom section, built Oct 2026*
+*Maxzone Clothing — custom feature, built December 2024*
 
 ![Snowfall effect on homepage](./screenshot-homepage-snowfall.png)
 ![Snowfall effect on footer](./screenshot-footer-snowfall.png)
@@ -17,12 +17,18 @@ and a `background-position` keyframe animation.
   so it never blocks clicks.
 - Three `.webp` snow textures are layered via `background-image` and
   drift at different speeds/directions using one `@keyframes` animation.
-- Added directly to `base.css` — no template/schema changes, so it can be
-  added/removed quickly each season.
 
 ## Tech
 CSS (pseudo-elements, keyframe animation, multiple background layers),
 Shopify asset files (`.webp`)
+
+## Setup
+1. Upload `snow1.webp`, `snow2.webp`, `snow3.webp` (from `assets/`) to
+   Shopify under Settings → Files.
+2. Paste the contents of `snowfall-effect.css` to the bottom of the
+   theme's `base.css`.
+3. Update the section/element IDs in the CSS to match the target theme's
+   actual section IDs before activating each season.
 
 ## Files
 - [`snowfall-effect.css`](./snowfall-effect.css) — the effect code
