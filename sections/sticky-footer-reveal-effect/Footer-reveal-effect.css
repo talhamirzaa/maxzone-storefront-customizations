@@ -1,0 +1,40 @@
+/* to use this effect, add below code in base.css */
+
+
+/* sticky footer that reveals on scroll */
+  main{ 
+    z-index: 1 !important; 
+    background-color: white !important;
+    }
+
+  .shopify-section-group-footer-group:nth-of-type(2), #shopify-section-sections--23577240863014__newsletter_hRFRpD{
+    z-index: 1 !important; 
+    background-color: white !important;
+    margin-bottom: 20px;
+    }
+
+    .quote-section{ 
+      position: fixed !important; 
+      z-index: 0 !important;
+      width: 100%;
+      bottom: 1px;
+      }
+
+        footer{ 
+          position: fixed !important; 
+          bottom: 0 !important; 
+          z-index: 0 !important;
+          width: 100%; 
+          }
+
+
+/* Target only the cart page's main element */
+.cart main {
+    position: relative !important;
+    z-index: 1 !important;
+    margin-bottom: 100%;
+}
+
+ .cart .shopify-section-group-header-group {
+    position: relative;
+}
