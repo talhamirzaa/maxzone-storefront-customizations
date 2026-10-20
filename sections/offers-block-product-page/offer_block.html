@@ -1,0 +1,95 @@
+<!-- to show this, add this code below the end of this block '{%- when 'buy_buttons' -%}'
+    or anywhere of your choice, inside the main-product.liquid file
+-->
+
+
+<style>
+    .main-offer-div {
+        border-radius: 0.8rem;
+        border-left: 2px solid black;
+        padding: 0.7rem 1rem;
+        box-shadow: 0px 3px 10px #0000004a;
+    }
+
+    .offer-div-heading {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 1rem 0;
+    }
+
+    .offer-title {
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        /* space between icon and text */
+        margin: 0.1rem 0;
+    }
+
+    .offer-note-title {
+        font-size: 1.2rem;
+    }
+
+    .offer {
+        padding: 0.1rem;
+    }
+
+    .offer-note {
+        padding-top: 0;
+        padding-left: 1rem;
+    }
+
+    .offers li.offer-note:not(:has(~ li.offer-note)) {
+        padding-bottom: 0.7rem;
+    }
+
+    .offer span,
+    .offer-note span {
+        padding-top: 3px;
+    }
+
+    .offers {
+        margin: 0;
+        padding-left: 0;
+        /* removes default list indent */
+        list-style: none;
+        /* removes bullets */
+    }
+
+    .offers::marker {
+        line-height: 1;
+    }
+</style>
+
+<div class="main-offer-div">
+    <h5 class="offer-div-heading">Offers of the Day</h5>
+    <ul class="offers">
+
+
+        <li class="offer">
+            <h3 class="offer-title">
+                <span class="icon" aria-hidden="true">
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M9.527 1.327c-.6-1.306-2.455-1.306-3.054 0a1.68 1.68 0 0 1-2.112.874c-1.347-.5-2.66.813-2.16 2.16a1.68 1.68 0 0 1-.874 2.112c-1.306.6-1.306 2.455 0 3.054a1.68 1.68 0 0 1 .874 2.112c-.5 1.347.813 2.659 2.16 2.16a1.68 1.68 0 0 1 2.112.874c.6 1.306 2.455 1.306 3.054 0a1.68 1.68 0 0 1 2.112-.874c1.347.499 2.66-.813 2.16-2.16a1.68 1.68 0 0 1 .874-2.112c1.306-.6 1.306-2.455 0-3.054a1.68 1.68 0 0 1-.874-2.112c.5-1.347-.813-2.66-2.16-2.16a1.68 1.68 0 0 1-2.112-.874m-2.527 4.923a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3.53.53-4 4a.749.749 0 1 1-1.06-1.06l4-4a.749.749 0 1 1 1.06 1.06m.47 3.47a1 1 0 1 1-2 0 1 1 0 0 1 2 0">
+                        </path>
+                    </svg>
+                </span>
+                Your offer text here
+            </h3>
+        </li>
+
+        <li class="offer">
+            <h3 class="offer-title">
+                <span class="icon" aria-hidden="true">
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M9.527 1.327c-.6-1.306-2.455-1.306-3.054 0a1.68 1.68 0 0 1-2.112.874c-1.347-.5-2.66.813-2.16 2.16a1.68 1.68 0 0 1-.874 2.112c-1.306.6-1.306 2.455 0 3.054a1.68 1.68 0 0 1 .874 2.112c-.5 1.347.813 2.659 2.16 2.16a1.68 1.68 0 0 1 2.112.874c.6 1.306 2.455 1.306 3.054 0a1.68 1.68 0 0 1 2.112-.874c1.347.499 2.66-.813 2.16-2.16a1.68 1.68 0 0 1 .874-2.112c1.306-.6 1.306-2.455 0-3.054a1.68 1.68 0 0 1-.874-2.112c.5-1.347-.813-2.66-2.16-2.16a1.68 1.68 0 0 1-2.112-.874m-2.527 4.923a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3.53.53-4 4a.749.749 0 1 1-1.06-1.06l4-4a.749.749 0 1 1 1.06 1.06m.47 3.47a1 1 0 1 1-2 0 1 1 0 0 1 2 0">
+                        </path>
+                    </svg>
+                </span>
+                Your offer text here
+            </h3>
+        </li>
+    </ul>
+</div>
